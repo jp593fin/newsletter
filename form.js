@@ -21,6 +21,9 @@
       }).then(function (r) { return r.json(); }).then(function (d) {
         if (d && d.status === 'success') {
           window.location.href = 'gracias.html';
+        } else if (d && d.status === 'quarantined' && d.url) {
+          // Kit pide verificar que es una persona (captcha); al pasarla, registra el contacto
+          window.location.href = d.url;
         } else {
           btn.disabled = false;
           say('No pudimos registrar ese correo. Revísalo e inténtalo de nuevo.', true);
